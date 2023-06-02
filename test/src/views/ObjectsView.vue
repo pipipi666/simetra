@@ -9,15 +9,17 @@
     </div>
     <ul class="ul">
       <li class="li" v-for="obj of filtered" :key="obj.id">
-        <div
-          class="status"
-          :class="{
-            active: obj.status === 3,
-            disconnect: obj.status === 255,
-            red: obj.status === 1,
-          }"
-        />
-        <div class="name">{{ obj.name }}</div>
+        <div class="status__wrapper">
+          <div
+            class="status"
+            :class="{
+              active: obj.status === 3,
+              disconnect: obj.status === 255,
+              red: obj.status === 1,
+            }"
+          />
+          <div class="name">{{ obj.name }}</div>
+        </div>
         <div class="integrator">{{ obj.integrator }}</div>
       </li>
     </ul>
@@ -68,9 +70,13 @@ export default {
   display: flex;
   justify-content: center;
   gap: var(--gap-s);
+  flex-wrap: wrap;
 }
 .ul {
   padding: 0;
+  width: 1000px;
+  max-width: 100%;
+  margin: auto;
   .li {
     margin-top: var(--gap-s);
     display: flex;
@@ -80,29 +86,45 @@ export default {
     padding: var(--gap-l) var(--gap-s);
     background-color: #dddddd6c;
     border-radius: var(--br);
-
-    .name {
-      font-size: 1.25rem;
+    @media screen and (max-width: 425px) {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .status {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-    }
+    .status__wrapper {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      gap: var(--gap-s);
+      .name {
+        font-size: 1.25rem;
+        text-align: left;
+        word-wrap: break-word;
+      }
 
-    .active {
-      background-color: #4cc452;
-    }
-    .disconnect {
-      background-color: #686566;
-    }
-    .red {
-      background-color: #c44c5c;
+      .status {
+        min-width: 15px;
+        height: 15px;
+        border-radius: 50%;
+      }
+
+      .active {
+        background-color: #4cc452;
+      }
+      .disconnect {
+        background-color: #686566;
+      }
+      .red {
+        background-color: #c44c5c;
+      }
     }
 
     .integrator {
       color: var(--accent-color);
+      justify-content: center;
+      @media screen and (max-width: 425px) {
+        margin-left: 35px;
+      }
     }
   }
 }

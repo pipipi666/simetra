@@ -34,7 +34,7 @@ nav {
 
   a {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 5vw, 1.5rem);
     color: #2c3e50;
     text-decoration: none;
 
