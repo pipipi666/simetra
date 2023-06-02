@@ -1,5 +1,5 @@
 <template>
-  <button class="btn">{{ text }}</button>
+  <button class="btn"><slot></slot></button>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ export default {
   height: 40px;
   padding: 0 20px;
   border: 0;
-  background-color: #887697;
+  background-color: #d15f8f;
   color: #ffffff;
   border-radius: 10px;
   font-size: inherit;
