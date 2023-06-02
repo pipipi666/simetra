@@ -1,12 +1,12 @@
 <template>
-  <button class="btn"><slot></slot></button>
+  <button class="btn" @click="handleClick"><slot></slot></button>
 </template>
 
 <script>
 export default {
   name: "MainButton",
   props: {
-    text: String,
+    handleClick: Function,
   },
 };
 </script>
@@ -14,12 +14,16 @@ export default {
 <style scoped lang="scss">
 .btn {
   height: 40px;
-  padding: 0 20px;
+  padding: 0 var(--gap-s);
   border: 0;
-  background-color: #d15f8f;
+  background-color: var(--accent-color);
   color: #ffffff;
-  border-radius: 10px;
+  border-radius: var(--br);
   font-size: inherit;
   cursor: pointer;
+
+  &:hover {
+    background-color: #8b5087;
+  }
 }
 </style>

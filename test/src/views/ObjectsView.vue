@@ -1,7 +1,14 @@
 <template>
   <div>
+    <div class="search">
+      <SearchInput
+        :modelValue="searchText"
+        @update:modelValue="(newValue) => (searchText = newValue)"
+      />
+      <MainButton :handleClick="handleSearchClick">Очистить</MainButton>
+    </div>
     <ul class="ul">
-      <li class="li" v-for="obj of objects" :key="obj.id">
+      <li class="li" v-for="obj of filtered" :key="obj.id">
         <div
           class="status"
           :class="{
@@ -19,40 +26,63 @@
 
 <script>
 import MainButton from "@/components/MainButton.vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
+import SearchInput from "@/components/SearchInput.vue";
 
 export default {
   name: "ObjectsView",
   components: {
     MainButton,
+    SearchInput,
+  },
+  data() {
+    return {
+      searchText: "",
+    };
   },
   methods: {
     ...mapActions(["fetchObjects"]),
+    handleSearchClick: function () {
+      this.searchText = "";
+    },
   },
   mounted() {
     this.fetchObjects();
   },
   computed: {
     ...mapState(["objects"]),
+    filtered() {
+      return (this.filteredObjects = this.objects.filter((obj) =>
+        obj.name
+          .toLowerCase()
+          .trim()
+          .includes(this.searchText.toLowerCase().trim())
+      ));
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
+.search {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-s);
+}
 .ul {
   padding: 0;
   .li {
-    margin-top: 20px;
+    margin-top: var(--gap-s);
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--gap-s);
     list-style-type: none;
-    padding: 40px 20px;
+    padding: var(--gap-l) var(--gap-s);
     background-color: #dddddd6c;
-    border-radius: 10px;
+    border-radius: var(--br);
 
     .name {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
 
     .status {
@@ -72,7 +102,7 @@ export default {
     }
 
     .integrator {
-      color: #d15f8f;
+      color: var(--accent-color);
     }
   }
 }

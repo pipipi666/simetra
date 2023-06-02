@@ -10,6 +10,14 @@
 </template>
 
 <style lang="scss">
+:root {
+  --accent-color: #d15f8f;
+  --br: 10px;
+  --gap-s: 20px;
+  --gap-m: 30px;
+  --gap-l: 40px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,19 +27,20 @@
 }
 
 nav {
-  padding: 30px;
+  padding: var(--gap-m);
   display: flex;
-  gap: 30px;
+  gap: var(--gap-m);
   justify-content: center;
 
   a {
     font-weight: bold;
+    font-size: 1.5rem;
     color: #2c3e50;
     text-decoration: none;
 
     &:hover,
     &.router-link-exact-active {
-      color: #d15f8f;
+      color: var(--accent-color);
     }
   }
 }
