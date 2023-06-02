@@ -55,7 +55,9 @@ export default {
     ...mapActions(["fetchObjects"]),
   },
   mounted() {
-    this.fetchObjects();
+    if (!this.objects?.length) {
+      this.fetchObjects();
+    }
   },
   computed: {
     ...mapState(["objects"]),

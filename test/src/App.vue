@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/objects">Objects</router-link>
-      <router-link to="/statistics">Statistics</router-link>
+      <router-link to="/">Карта</router-link>
+      <router-link to="/objects">Объекты</router-link>
+      <router-link to="/statistics">Статистика</router-link>
     </nav>
     <router-view />
   </div>
@@ -16,6 +16,7 @@
   --gap-s: 20px;
   --gap-m: 30px;
   --gap-l: 40px;
+  --header-h: 80px;
 }
 
 #app {
@@ -26,11 +27,17 @@
   color: #2c3e50;
 }
 
+body {
+  margin: 0;
+}
+
 nav {
-  padding: var(--gap-m);
+  height: var(--header-h);
   display: flex;
-  gap: var(--gap-m);
   justify-content: center;
+  align-items: center;
+  gap: var(--gap-m);
+  padding: 0 var(--gap-m);
 
   a {
     font-weight: bold;

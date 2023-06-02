@@ -28,7 +28,7 @@
 
 <script>
 import MainButton from "@/components/MainButton.vue";
-import { mapActions, mapGetters, mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import SearchInput from "@/components/SearchInput.vue";
 
 export default {
@@ -49,7 +49,9 @@ export default {
     },
   },
   mounted() {
-    this.fetchObjects();
+    if (!this.objects?.length) {
+      this.fetchObjects();
+    }
   },
   computed: {
     ...mapState(["objects"]),
