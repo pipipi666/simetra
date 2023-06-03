@@ -15,7 +15,7 @@
 ![image](https://github.com/pipipi666/simetra/assets/74764322/41cbe885-5f84-4ec4-bcef-ef2cbdbe614c)
 
 ## Объекты
-![image](https://github.com/pipipi666/simetra/assets/74764322/5dcf2052-a96b-4af4-85ee-7a52de801341)
+![image](https://github.com/pipipi666/simetra/assets/74764322/2012964a-b0d7-41dd-9e85-a6d057791266)
 
 ## Статистика
 ![image](https://github.com/pipipi666/simetra/assets/74764322/c836f7a3-8e3e-441f-8739-97ca8c08ca2f)
