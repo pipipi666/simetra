@@ -6,6 +6,9 @@
         @update:modelValue="(newValue) => (searchText = newValue)"
       />
       <MainButton :handleClick="handleSearchClick">Очистить</MainButton>
+      <MainButton :handleClick="handleWorksClick" :is-active="isWorks"
+        >Работает</MainButton
+      >
     </div>
     <ul class="ul">
       <li class="li" v-for="obj of filtered" :key="obj.id">
@@ -40,12 +43,23 @@ export default {
   data() {
     return {
       searchText: "",
+      isWorks: false,
     };
   },
   methods: {
     ...mapActions(["fetchObjects"]),
     handleSearchClick: function () {
       this.searchText = "";
+      this.isWorks = false;
+    },
+    handleWorksClick: function () {
+      this.isWorks = !this.isWorks;
+    },
+    filterByName: function (name) {
+      return name
+        .toLowerCase()
+        .trim()
+        .includes(this.searchText.toLowerCase().trim());
     },
   },
   mounted() {
@@ -56,12 +70,11 @@ export default {
   computed: {
     ...mapState(["objects"]),
     filtered() {
-      return (this.filteredObjects = this.objects.filter((obj) =>
-        obj.name
-          .toLowerCase()
-          .trim()
-          .includes(this.searchText.toLowerCase().trim())
-      ));
+      return this.isWorks
+        ? this.objects.filter(
+            (obj) => this.filterByName(obj.name) && obj.status === 3
+          )
+        : this.objects.filter((obj) => this.filterByName(obj.name));
     },
   },
 };
