@@ -75,7 +75,8 @@ export default {
   flex-wrap: wrap;
 }
 .ul {
-  padding: 0;
+  box-sizing: border-box;
+  padding: var(--gap-s);
   width: 1000px;
   max-width: 100%;
   margin: auto;

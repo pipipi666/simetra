@@ -59,7 +59,6 @@ export default {
     }
 
     map.addControl(geolocate, "top-right");
-
     map.addControl(nav, "top-right");
   },
 };

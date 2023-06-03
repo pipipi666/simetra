@@ -6,6 +6,7 @@
     <div class="bar">
       <Bar :options="barOptions" :data="chartDataIntegrator" />
     </div>
+    <MainButton :handleClick="handleClick">Наверх</MainButton>
   </div>
 </template>
 
@@ -53,6 +54,13 @@ export default {
   },
   methods: {
     ...mapActions(["fetchObjects"]),
+    handleClick() {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    },
   },
   mounted() {
     if (!this.objects?.length) {
@@ -118,12 +126,15 @@ export default {
 
 <style scoped lang="scss">
 .chart {
+  padding-bottom: var(--gap-l);
   .pie {
     width: 400px;
+    max-width: 100%;
     margin: var(--gap-l) auto;
   }
   .bar {
     width: 800px;
+    max-width: 90%;
     margin: var(--gap-l) auto;
   }
 }
